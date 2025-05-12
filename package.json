@@ -1,0 +1,21 @@
+{
+  "name": "stream-chat-pin-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "google-spreadsheet": "^4.1.4",
+    "googleapis": "^148.0.0",
+    "stream-chat": "^8.60.0"
+  },
+  "description": ""
+}
