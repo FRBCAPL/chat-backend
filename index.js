@@ -13,12 +13,12 @@ const allowedOrigins = [
   'https://frbcapl.github.io'
 ];
 
-
-
+// Use a function for origin to avoid trailing slash issues and for flexibility
 app.use(cors({
   origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    if (allowedOrigins.includes(origin)) {
       return callback(null, true);
     } else {
       return callback(new Error('Not allowed by CORS'));
@@ -27,9 +27,10 @@ app.use(cors({
   credentials: true,
 }));
 
+// Enable preflight for all routes
 app.options('*', cors());
 
-
+app.use(express.json());
 
 const SHEET_ID = '1tvMgMHsRwQxsR6lMNlSnztmwpK7fhZeNEyqjTqmRFRc';
 const STREAM_API_KEY = 'emnbag2b9jt4';
