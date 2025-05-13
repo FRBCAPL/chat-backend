@@ -13,9 +13,10 @@ const allowedOrigins = [
   'https://frbcapl.github.io'
 ];
 
+
+
 app.use(cors({
   origin: function(origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     if (allowedOrigins.indexOf(origin) !== -1) {
       return callback(null, true);
@@ -26,8 +27,8 @@ app.use(cors({
   credentials: true,
 }));
 
-// This line is optional but recommended for full preflight support:
 app.options('*', cors());
+
 
 
 const SHEET_ID = '1tvMgMHsRwQxsR6lMNlSnztmwpK7fhZeNEyqjTqmRFRc';
