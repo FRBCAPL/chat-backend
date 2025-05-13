@@ -33,8 +33,9 @@ app.options('*', cors());
 app.use(express.json());
 
 const SHEET_ID = '1tvMgMHsRwQxsR6lMNlSnztmwpK7fhZeNEyqjTqmRFRc';
-const STREAM_API_KEY = 'emnbag2b9jt4';
-const STREAM_API_SECRET = 't8ehrbr2yz5uv84u952mkud9bnjd42zcggwny8at2e9qmvyc5aahsfqexrjtxa5g';
+const STREAM_API_KEY = process.env.STREAM_API_KEY;
+const STREAM_API_SECRET = process.env.STREAM_API_SECRET;
+
 
 // --------- Google Sheets Auth (works locally and on Render) ---------
 let auth;
@@ -65,8 +66,9 @@ async function getUserByPin(pin) {
   const rows = res.data.values || [];
 
   for (let i = 1; i < rows.length; i++) {
-    const name = rows[i][0];
-    const sheetPin = rows[i][7];
+   const name = rows[i][0]; // Column A
+const sheetPin = rows[i][7]; // Column H
+
     if (sheetPin === pin) {
       if (!name) return null;
       const userId = `${name.toLowerCase().replace(/\s+/g, '_')}_${pin}`;
